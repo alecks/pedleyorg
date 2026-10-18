@@ -36,7 +36,7 @@ export const profile: Profile = {
 	],
 	dotfiles: {
 		label:
-			"My dotfiles, if you're curious about my tiling WM setup (on both Linux and macOS)!",
+			"My dotfiles. Spoiler: tiling WMs and Helix everywhere.",
 		href: "https://github.com/alecks/dotfiles",
 	},
 	links: [
