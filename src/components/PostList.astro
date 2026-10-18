@@ -1,0 +1,76 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "./FormattedDate.astro";
+
+interface Props {
+	posts: CollectionEntry<"blog">[];
+}
+const { posts } = Astro.props;
+const years = [
+	...new Set(posts.map((post) => post.data.pubDate.getUTCFullYear())),
+];
+---
+
+<div class="archive">
+	{years.map((year) => (
+		<section aria-labelledby={`year-${year}`}>
+			<h2 id={`year-${year}`}>{year}</h2>
+			<ul>
+				{posts
+					.filter((post) => post.data.pubDate.getUTCFullYear() === year)
+					.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							<FormattedDate date={post.data.pubDate} includeYear={false} />
+						</li>
+					))}
+			</ul>
+		</section>
+	))}
+</div>
+
+<style>
+	section + section {
+		margin-top: 32px;
+	}
+
+	h2 {
+		margin: 0 0 12px;
+		font-family: var(--mono);
+		font-size: 12px;
+		font-weight: 400;
+		color: var(--muted);
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 20px;
+		padding-block: 11px;
+	}
+
+	a {
+		color: var(--text);
+		line-height: 1.5;
+	}
+
+	li :global(time) {
+		flex-shrink: 0;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 12px;
+	}
+
+	@media (max-width: 480px) {
+		li {
+			gap: 14px;
+		}
+	}
+</style>

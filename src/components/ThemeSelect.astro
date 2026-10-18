@@ -1,0 +1,52 @@
+<div class="theme-control" hidden>
+	<label for="theme">Theme</label>
+	<select id="theme" name="theme">
+		<option value="system">System</option>
+		<option value="light">Light</option>
+		<option value="dark">Dark</option>
+	</select>
+</div>
+
+<script>
+	const select = document.querySelector<HTMLSelectElement>("#theme");
+	const control = document.querySelector<HTMLElement>(".theme-control");
+	if (select && control) {
+		select.value = document.documentElement.dataset.theme || "system";
+		control.hidden = false;
+		select.addEventListener("change", () => {
+			if (select.value === "system")
+				delete document.documentElement.dataset.theme;
+			else document.documentElement.dataset.theme = select.value;
+			try {
+				if (select.value === "system") localStorage.removeItem("theme");
+				else localStorage.setItem("theme", select.value);
+			} catch {}
+		});
+	}
+</script>
+
+<style>
+	.theme-control {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.theme-control[hidden] {
+		display: none;
+	}
+
+	label {
+		color: var(--muted);
+	}
+
+	select {
+		font: inherit;
+		color: var(--text);
+		background: var(--background);
+		border: 1px solid var(--border);
+		border-radius: 3px;
+		padding: 5px 22px 5px 8px;
+		cursor: pointer;
+	}
+</style>

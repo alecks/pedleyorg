@@ -1,0 +1,29 @@
+---
+import { profile } from "../consts";
+---
+
+<div class="contact-links">
+	{profile.links.map((link) =>
+		link.href ? (
+			<a href={link.href}>{link.label}</a>
+		) : (
+			<span title={`${link.label} link to be added`}>
+				{link.label}
+				<span class="sr-only"> (to be added)</span>
+			</span>
+		),
+	)}
+	<a href="/rss.xml">RSS</a>
+</div>
+
+<style>
+	.contact-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	.contact-links > span {
+		color: var(--muted);
+	}
+</style>

@@ -1,0 +1,37 @@
+---
+import Page from "../layouts/Page.astro";
+import { profile } from "../consts";
+---
+
+<Page
+	title={`Page not found / ${profile.name}`}
+	description="This page could not be found."
+>
+	<p class="status">404</p>
+	<h1>Page not found.</h1>
+	<p class="message">
+		The page may have moved, or the link might be incorrect.
+	</p>
+	<a class="back" href="/">
+		Back to writing <span aria-hidden="true">↗</span>
+	</a>
+</Page>
+
+<style>
+	.status {
+		margin: 0 0 12px;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 12px;
+	}
+
+	.message {
+		margin: 16px 0 24px;
+		color: var(--muted);
+		font-size: 16px;
+	}
+
+	.back {
+		font-size: 14px;
+	}
+</style>
