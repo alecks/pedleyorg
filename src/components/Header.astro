@@ -1,11 +1,11 @@
 ---
-import { profile } from "../consts";
+import { site } from "../lib/site";
 const about = Astro.url.pathname.replace(/\/$/, "") === "/about";
 ---
 
 <header>
 	<a class="name" href="/">
-		{profile.name}
+		{site.name}
 		<span aria-hidden="true">.</span>
 	</a>
 	<nav aria-label="Main navigation">

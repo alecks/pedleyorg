@@ -4,7 +4,7 @@ import Page from "../../layouts/Page.astro";
 import PostList from "../../components/PostList.astro";
 import TagNavigation from "../../components/TagNavigation.astro";
 import { collectTags, tagSlug, type Tag } from "../../lib/tags";
-import { profile } from "../../consts";
+import { site } from "../../lib/site";
 
 export async function getStaticPaths() {
 	const posts = (await getCollection("blog")).sort(
@@ -31,8 +31,8 @@ const { tag, tags, posts } = Astro.props;
 ---
 
 <Page
-	title={`${tag.label} / ${profile.name}`}
-	description={`Posts tagged ${tag.label} by ${profile.name}.`}
+	title={`${tag.label} / ${site.name}`}
+	description={`Posts tagged ${tag.label} by ${site.name}.`}
 >
 	<h1>Posts tagged {tag.label}</h1>
 	<TagNavigation tags={tags} activeSlug={tag.slug} />

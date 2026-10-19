@@ -3,14 +3,14 @@ import type { CollectionEntry } from "astro:content";
 import Page from "./Page.astro";
 import TagLinks from "../components/TagLinks.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import { profile } from "../consts";
+import { site } from "../lib/site";
 
 type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, tags } = Astro.props;
 ---
 
 <Page
-	title={`${title} / ${profile.name}`}
+	title={`${title} / ${site.name}`}
 	description={description}
 	type="article"
 >

@@ -2,12 +2,21 @@
 import Page from "./Page.astro";
 import ProjectList from "../components/ProjectList.astro";
 import ContactLinks from "../components/ContactLinks.astro";
-import { profile } from "../consts";
+import { site } from "../lib/site";
+
+interface Props {
+	frontmatter: {
+		title?: string;
+		description?: string;
+	};
+}
+
+const { frontmatter } = Astro.props;
 ---
 
 <Page
-	title={`About / ${profile.name}`}
-	description={`About ${profile.name}, backend developer.`}
+	title={`${frontmatter.title || "About"} / ${site.name}`}
+	description={frontmatter.description || site.introduction}
 >
 	<div class="prose about">
 		<slot />

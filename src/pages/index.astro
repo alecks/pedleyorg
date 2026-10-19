@@ -4,7 +4,7 @@ import Page from "../layouts/Page.astro";
 import PostList from "../components/PostList.astro";
 import TagNavigation from "../components/TagNavigation.astro";
 import { collectTags } from "../lib/tags";
-import { profile } from "../consts";
+import { site } from "../lib/site";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -14,8 +14,8 @@ const tags = collectTags(posts);
 
 <Page>
 	<section class="intro" aria-labelledby="intro-title">
-		<h1 id="intro-title">{profile.heading}</h1>
-		<p>{profile.introduction}</p>
+		<h1 id="intro-title">{site.heading}</h1>
+		<p>{site.introduction}</p>
 	</section>
 	<TagNavigation tags={tags} />
 	<PostList posts={posts} />

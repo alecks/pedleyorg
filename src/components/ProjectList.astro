@@ -1,11 +1,11 @@
 ---
-import { profile } from "../consts";
+import { projects } from "../lib/site";
 ---
 
 <section aria-labelledby="projects-title">
 	<h2 id="projects-title">Projects</h2>
 	<ul class="projects">
-		{profile.projects.map((project) => (
+		{projects.map((project) => (
 			<li>
 				<div class="project-heading">
 					<h3>

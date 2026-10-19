@@ -1,0 +1,21 @@
+{
+	"name": "Alex Pedley",
+	"heading": "Building things. Taking notes.",
+	"introduction": "Backend developer and Informatics student at the University of Edinburgh. Writing about software, systems, and other things I take interest to.",
+	"links": [
+		{
+			"label": "GitHub",
+			"href": "https://github.com/alecks"
+		},
+		{
+			"label": "LinkedIn",
+			"href": "https://linkedin.com/in/alexmpedley"
+		},
+		{
+			"label": "Email",
+			"href": "mailto:alex@pedley.org"
+		}
+	],
+	"title": "",
+	"description": ""
+}

@@ -1,10 +1,10 @@
 ---
 import Page from "../layouts/Page.astro";
-import { profile } from "../consts";
+import { site } from "../lib/site";
 ---
 
 <Page
-	title={`Page not found / ${profile.name}`}
+	title={`Page not found / ${site.name}`}
 	description="This page could not be found."
 >
 	<p class="status">404</p>

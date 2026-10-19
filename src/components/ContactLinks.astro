@@ -1,9 +1,9 @@
 ---
-import { profile } from "../consts";
+import { site } from "../lib/site";
 ---
 
 <div class="contact-links">
-	{profile.links.map((link) =>
+	{site.links.map((link) =>
 		link.href ? (
 			<a href={link.href}>{link.label}</a>
 		) : (

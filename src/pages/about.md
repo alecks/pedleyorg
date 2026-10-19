@@ -1,5 +1,7 @@
 ---
 layout: ../layouts/About.astro
+title: About
+description: About Alex Pedley, backend developer.
 ---
 
 # About
