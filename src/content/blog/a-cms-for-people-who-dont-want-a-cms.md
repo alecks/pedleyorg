@@ -92,7 +92,7 @@ The part I like about Pages CMS is that it integrates with *your* website, not t
 
 This is the good bit. It can read your existing YAML frontmatter, making blogs a breeze. You get a fancy WYSIWYG editor too. For me, there was no refactoring or setup needed, other than editing my `.pages.yml`. Here's a simplified example:
 
-```
+```yml
 media:
   input: public/uploads
   output: /uploads
@@ -132,6 +132,12 @@ I can simply paste a screenshot into the Markdown editor, and it'll push this to
 
 ![image.png](/uploads/image-1.png)
 
+## Image optimisation and more
+
+Okay, so content-management systems do a lot more than just let you edit blog posts. Some of it could be considered 'bloat', but one thing is definitely worth it: image optimisation. This is something that can already be done with CI workflows, like GitHub Actions, but Pages CI makes it a bit easier. You can add a button to your 'Media' tab to run the workflow for you, all confined in the one dashboard. This is a simple example, but you can do a lot more: think about a button to build a preview before you publish a new post, scheduling posts for publishing, generating shareable social images for new posts, etc.
+
+## Conclusion
+
 This is probably the farthest I would go in adding any sort of content management to any static site. This website will work forever, as long as browsers still support HTML and CSS. If Pages CMS goes down, I can go back to the old-fashioned way of editing the files myself, or self-host it. There's no thinking about updating Wordpress because of a CVE, no dealing with outdated plugins, and importantly, you choose *exactly* what is served to your visitors.
 
-In short, a sub-100-line config file is all you need to make it easy to manage uploads and content on your static site. It might not be necessary, but there's almost no reason not to. It'll make your life a lot easier if you ever feel like writing a blog post while on the move, which, if you're like me, is one of the few places where you'll have enough time to write one. It's free and open-source, and if you don't like it, just remove its push access to your repo -- done.
+A sub-100-line config file is all you need to make it easy to manage uploads and content on your static site. It might not be necessary, but there's almost no reason not to. It'll make your life a lot easier if you ever feel like writing a blog post while on the move, which, if you're like me, is one of the few places where you'll have enough time to write one. It's free and open-source, and if you don't like it, just remove its push access to your repo -- done.
