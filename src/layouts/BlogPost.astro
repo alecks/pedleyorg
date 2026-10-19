@@ -7,6 +7,10 @@ import { site } from "../lib/site";
 
 type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, tags } = Astro.props;
+const email = site.links.find((link) => link.href?.startsWith("mailto:"));
+const replyHref = email?.href
+	? `${email.href}?subject=${encodeURIComponent(`Re: ${title}`)}`
+	: undefined;
 ---
 
 <Page
@@ -30,6 +34,7 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 		<div class="prose">
 			<slot />
 		</div>
+		{replyHref && <p><a href={replyHref}>Reply by email</a></p>}
 	</article>
 	<a class="back" href="/">
 		<span aria-hidden="true">←</span> Back to writing
