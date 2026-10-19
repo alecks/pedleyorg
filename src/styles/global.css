@@ -58,6 +58,7 @@
 }
 
 html {
+	font-size: 125%;
 	background: var(--background);
 	color: var(--text);
 }
@@ -65,14 +66,14 @@ html {
 body {
 	margin: 0;
 	font-family: Switzer, sans-serif;
-	font-size: 17px;
+	font-size: 1rem;
 	line-height: 1.7;
 	overflow-wrap: break-word;
 	-webkit-font-smoothing: antialiased;
 }
 
 .site {
-	width: min(640px, calc(100% - 48px));
+	width: min(752px, calc(100% - 48px));
 	margin-inline: auto;
 }
 
@@ -92,7 +93,7 @@ h6 {
 }
 
 h1 {
-	font-size: 28px;
+	font-size: 1.6rem;
 	letter-spacing: -0.8px;
 }
 
@@ -139,13 +140,13 @@ video {
 }
 
 .prose h2 {
-	font-size: 21px;
+	font-size: 1.25rem;
 	letter-spacing: -0.4px;
 	margin-block: 2em 0.8em;
 }
 
 .prose h3 {
-	font-size: 18px;
+	font-size: 1.1rem;
 	margin-block: 1.8em 0.7em;
 }
 
@@ -202,7 +203,7 @@ pre {
 }
 
 pre code {
-	font-size: 13px;
+	font-size: 0.8rem;
 	padding: 0;
 	border-radius: 0;
 	background: none;
@@ -248,7 +249,7 @@ hr {
 	width: 100%;
 	overflow-x: auto;
 	border-collapse: collapse;
-	font-size: 15px;
+	font-size: 0.9rem;
 	margin-block: 1.5em;
 }
 
