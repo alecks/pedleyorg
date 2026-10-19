@@ -3,6 +3,73 @@ media:
   output: /uploads
 
 content:
+  - name: site
+    label: Site settings
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: heading
+        label: Homepage heading
+        type: string
+        required: true
+      - name: introduction
+        label: Introduction
+        type: text
+        required: true
+      - name: title
+        label: Site title
+        type: string
+        description: Leave blank to use your name followed by / Writing.
+      - name: description
+        label: SEO description
+        type: text
+        description: Leave blank to use the introduction. Also used in the RSS feed.
+      - name: links
+        label: Contact links
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Label
+            type: string
+            required: true
+          - name: href
+            label: URL
+            type: string
+            description: A web address or mailto link. Leave blank to show a placeholder.
+
+  - name: projects
+    label: Projects
+    type: file
+    path: src/data/projects.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: year
+        label: Year
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: text
+        required: true
+      - name: href
+        label: URL
+        type: string
+      - name: technologies
+        label: Technologies
+        type: string
+        list: true
+
   - name: blog
     label: Blog posts
     type: collection
@@ -55,6 +122,14 @@ content:
         type: string
         hidden: true
         default: ../layouts/About.astro
+      - name: title
+        label: Page title
+        type: string
+        description: Your name is appended automatically.
+      - name: description
+        label: SEO description
+        type: text
+        description: Leave blank to use the site introduction.
       - name: body
         label: Content
         type: rich-text
