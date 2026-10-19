@@ -194,6 +194,7 @@ code {
 }
 
 pre {
+	tab-size: 2;
 	padding: 20px;
 	overflow-x: auto;
 	line-height: 1.7;
