@@ -10,9 +10,9 @@ tags:
 ---
 I try to keep everything I build as simple as possible. It would be ridiculous to build this website using anything other than something like GitHub Pages or Vercel. It's a simple, static [Astro](https://astro.build) site with no JavaScript, barely any custom CSS, and two fonts. This does pose a problem though; how do you edit your website remotely with no access to a terminal?
 
-You might suggest GitHub Mobile. Add a markdown file, commit, push, and a worker builds the site. This is what I was planning on doing. It isn't exactly intuitive though, nor fun. The other option would be moving towards a content-management system (CMS), like Wordpress, Ghost, or Grav. Perhaps one day I might want a full admin dashboard, with users, analytics and... PHP. (I probably won't).
+You might suggest GitHub Mobile. Add a markdown file, commit, push, and a worker builds the site. This is what I was planning on doing. It isn't exactly intuitive though, nor fun. The other option would be moving towards a content management system (CMS), like Wordpress, Ghost, or Grav. Perhaps one day I might want a full admin dashboard, with users, analytics and... PHP. (I probably won't).
 
-I stumbled across [Pages CMS](https://pagescms.org/) -- it integrates with your existing static site, whether it be Astro, Hugo, or your own hand-rolled SSG. All it needs is push access to your repository to give you media uploads, content management, and site configuration, while still allowing you to exploit Somecompany Pages for their free tier! Importantly, it's entirely separate from your website, meaning there's no changes to the content served to visitors. Really, Pages CMS is just a fancy interface over the top of a Git repo.
+I stumbled upon [Pages CMS](https://pagescms.org/) -- it integrates with your existing static site, whether it be Astro, Hugo, or your own hand-rolled SSG. All it needs is push access to your repository to give you media uploads, content management, and site configuration, while still allowing you to exploit Somecompany Pages for their free tier! Importantly, it's entirely separate from your website, meaning there's no changes to the content served to visitors. Really, Pages CMS is just a fancy interface over the top of a Git repo.
 
 ## Show me!
 
@@ -134,7 +134,7 @@ I can simply paste a screenshot into the Markdown editor, and it'll push this to
 
 ## Image optimisation and more
 
-Okay, so content-management systems do a lot more than just let you edit blog posts. Some of it could be considered 'bloat', but one thing is definitely worth it: image optimisation. This is something that can already be done with CI workflows, like GitHub Actions, but Pages CMS makes it a bit easier. You can add a button to your 'Media' tab to run the workflow for you, all confined in the one dashboard. This is a simple example, but you can do a lot more: think about a button to build a preview before you publish a new post, scheduling posts for publishing, generating shareable social images for new posts, etc.
+Okay, so content management systems do a lot more than let you edit blog posts. Some of it could be considered 'bloat', but one thing is definitely worth it: image optimisation. This is something that can already be done with CI workflows, like GitHub Actions, but Pages CMS makes it a bit easier. You can add a button to your 'Media' tab to run the workflow for you, all confined in the one dashboard. This is a simple example, but you can do a lot more: think about a button to build a preview before you publish a new post, scheduling posts for publishing, generating shareable social images for new posts, etc.
 
 ## Conclusion
 
