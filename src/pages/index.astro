@@ -2,11 +2,14 @@
 import { getCollection } from "astro:content";
 import Page from "../layouts/Page.astro";
 import PostList from "../components/PostList.astro";
+import TagNavigation from "../components/TagNavigation.astro";
+import { collectTags } from "../lib/tags";
 import { profile } from "../consts";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const tags = collectTags(posts);
 ---
 
 <Page>
@@ -14,6 +17,7 @@ const posts = (await getCollection("blog")).sort(
 		<h1 id="intro-title">{profile.heading}</h1>
 		<p>{profile.introduction}</p>
 	</section>
+	<TagNavigation tags={tags} />
 	<PostList posts={posts} />
 </Page>
 

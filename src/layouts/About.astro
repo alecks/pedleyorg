@@ -1,0 +1,43 @@
+---
+import Page from "./Page.astro";
+import ProjectList from "../components/ProjectList.astro";
+import ContactLinks from "../components/ContactLinks.astro";
+import { profile } from "../consts";
+---
+
+<Page
+	title={`About / ${profile.name}`}
+	description={`About ${profile.name}, backend developer.`}
+>
+	<div class="prose about">
+		<slot />
+	</div>
+	<ProjectList />
+	<section class="contact" aria-labelledby="contact-title">
+		<h2 id="contact-title">Elsewhere</h2>
+		<ContactLinks />
+	</section>
+</Page>
+
+<style>
+	.about :global(h1) {
+		margin-bottom: 24px;
+	}
+
+	.about :global(blockquote) {
+		font-size: 0.8rem;
+	}
+
+	.contact {
+		margin-top: 40px;
+	}
+
+	h2 {
+		font-size: 1.1rem;
+	}
+
+	.contact :global(.contact-links) {
+		margin-top: 18px;
+		font-size: 0.8rem;
+	}
+</style>

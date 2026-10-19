@@ -1,0 +1,46 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Page from "../../layouts/Page.astro";
+import PostList from "../../components/PostList.astro";
+import TagNavigation from "../../components/TagNavigation.astro";
+import { collectTags, tagSlug, type Tag } from "../../lib/tags";
+import { profile } from "../../consts";
+
+export async function getStaticPaths() {
+	const posts = (await getCollection("blog")).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+	const tags = collectTags(posts);
+	return tags.map((tag) => ({
+		params: { tag: tag.slug },
+		props: {
+			tag,
+			tags,
+			posts: posts.filter((post) =>
+				post.data.tags.some((label) => tagSlug(label) === tag.slug),
+			),
+		},
+	}));
+}
+interface Props {
+	tag: Tag;
+	tags: Tag[];
+	posts: CollectionEntry<"blog">[];
+}
+const { tag, tags, posts } = Astro.props;
+---
+
+<Page
+	title={`${tag.label} / ${profile.name}`}
+	description={`Posts tagged ${tag.label} by ${profile.name}.`}
+>
+	<h1>Posts tagged {tag.label}</h1>
+	<TagNavigation tags={tags} activeSlug={tag.slug} />
+	<PostList posts={posts} />
+</Page>
+
+<style>
+	h1 {
+		margin-bottom: 32px;
+	}
+</style>
