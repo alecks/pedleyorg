@@ -7,7 +7,7 @@ description: How depart.cloud turns basic data from a game server into live
 pubDate: 2026-10-20
 tags:
   - elixir
-  - liveview
+  - web
 ---
 I've recently been working on [depart.cloud](https://depart.cloud), a multiplayer network for OMSI 2 using [openOMSI](https://openomsi.org). Alongside the game servers, I wanted a website with live driving statistics that gave people a reason to return.
 
