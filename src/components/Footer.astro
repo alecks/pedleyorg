@@ -1,16 +1,23 @@
 ---
 import ContactLinks from "./ContactLinks.astro";
 import ThemeSelect from "./ThemeSelect.astro";
+import { site } from "../lib/site";
 ---
 
 <footer>
 	<ContactLinks />
 	<ThemeSelect />
+	{site.repositoryUrl && (
+		<p class="source-note">
+			This website is open-source! <a href={site.repositoryUrl}>Use it as a template</a>
+		</p>
+	)}
 </footer>
 
 <style>
 	footer {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 		gap: 24px;
@@ -21,6 +28,12 @@ import ThemeSelect from "./ThemeSelect.astro";
 	}
 
 	footer :global(a) {
+		color: var(--muted);
+	}
+
+	.source-note {
+		width: 100%;
+		margin: 0;
 		color: var(--muted);
 	}
 

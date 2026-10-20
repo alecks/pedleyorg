@@ -29,6 +29,10 @@ content:
         label: SEO description
         type: text
         description: Leave blank to use the introduction. Also used in the RSS feed.
+      - name: repositoryUrl
+        label: Open-source footer repository URL
+        type: string
+        description: 'Shows "This website is open-source! Use it as a template" with a link to this repository. Leave blank to hide this message. Your website source code must remain open source under AGPL v3.0, the license for this template, even if you hide the message.'
       - name: links
         label: Contact links
         type: object

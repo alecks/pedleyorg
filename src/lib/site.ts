@@ -19,6 +19,7 @@ const siteSchema = z.object({
 	introduction: text,
 	title: optionalText,
 	description: optionalText,
+	repositoryUrl: optionalText,
 	links: z.array(linkSchema).default([]),
 });
 const projectSchema = z.object({
