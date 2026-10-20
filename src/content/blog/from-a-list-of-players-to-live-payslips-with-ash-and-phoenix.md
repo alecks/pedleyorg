@@ -5,6 +5,9 @@ description: How depart.cloud turns basic data from a game server into live
   policies, and Phoenix LiveViews to update the page, without writing
   client-side code.
 pubDate: 2026-10-20
+tags:
+  - elixir
+  - liveview
 ---
 I've recently been working on [depart.cloud](https://depart.cloud), a multiplayer network for OMSI 2 using [openOMSI](https://openomsi.org). Alongside the game servers, I wanted a website with live driving statistics that gave people a reason to return.
 
@@ -24,7 +27,7 @@ depart.cloud's payroll system turns recorded driving sessions into monthly virtu
 
 A *GenServer* in Elixir is a stateful background process which communicates using message passing. [depart.cloud](http://depart.cloud) has multiple GenServers running constantly, polling data from the OMSI game servers and maintaining a cache. One of these, `Departcloud.Players`, polls an OMSI server for player data, matches player names to registered accounts, and caches it. The following code schedules the next `:poll` message and announces the latest player state to `PubSub` subscribers:
 
-```ex
+```elixir
 timer = Process.send_after(self(), :poll, state.interval_s * 1_000)
 
 Phoenix.PubSub.broadcast(
@@ -42,7 +45,7 @@ This server keeps watching the game regardless of whether anyone has the website
 
 Next, we have a worker for our payroll system. This GenServer mostly just listens for messages and coördinates payroll work. It listens for player updates, as sent by our `Players` server above, runs its own reconciliation timer, and performs final accounting when a duty ends. This is its handler for the aforementioned `:players_updated` broadcast:
 
-```ex
+```elixir
 def handle_info({:players_updated, server_id, _, _, fetched_at}, state) do
   safely(fn ->
     if fetched_at do
@@ -63,7 +66,7 @@ We read the server's *open sessions* from Ash, and account for their time up to 
 
 Once our payroll transaction succeeds, we broadcast a notification identifying the affected month to the user's `PubSub` topic:
 
-```ex
+```elixir
 {:ok, months} ->
   Enum.each(
     months,
@@ -79,7 +82,7 @@ Once our payroll transaction succeeds, we broadcast a notification identifying t
 
 We have a Phoenix LiveView, served at `https://depart.cloud/payslips`. This listens for `:payroll_updated` messages on the user's topic, renders the relevant HTML and pushes updates to the browser. LiveView's JS client applies the update without a full page reload. Here's the code: the LiveView checks whether the change concerns the currently-open month or the list of payslips, and sends the rendered changes to the browser:
 
-```ex
+```elixir
 def handle_info({:payroll_updated, month}, socket) do
   if socket.assigns[:loaded_month] in [nil, Calendar.strftime(month, "%Y-%m")],
     do: reload(socket),
@@ -89,7 +92,7 @@ end
 
 `reload` is our own helper which chooses how to update the page with new data, whether it be for the payslip list or a specific payslip. After fetching the updated payslip, we replace its main figures in the socket assigns and reset the streamed map breakdown. LiveView tracks these changes and sends the resulting update to the browser.
 
-```ex
+```elixir
 socket
 |> assign(:payslip, Map.delete(payslip, :maps))
 |> stream(:map_pay, payslip.maps, reset: true)
@@ -97,13 +100,13 @@ socket
 
 And my favourite part is that all of our actions are under Ash policies. We define authorisation alongside the resource, so the LiveView and background worker use the same access rules. Payroll operations pass this internal actor:
 
-```ex
+```elixir
 def actor, do: ${payroll?: true}
 ```
 
 The policy allows it to read and update payslips, while drivers can only read their own, subject to the owner check:
 
-```ex
+```elixir
 policies do
   policy action_type(:read) do
     authorize_if actor_attribute_equals(:payroll?, true)
