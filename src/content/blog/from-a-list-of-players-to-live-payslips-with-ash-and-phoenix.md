@@ -39,11 +39,11 @@ Phoenix.PubSub.broadcast(
 {:noreply, %{state | timer: timer}}
 ```
 
-This server keeps watching the game regardless of whether anyone has the website open and the rest of the application shares the cached results. Each successful poll compares the latest player observations with the duties already being tracked. Recognised drivers starting a tour get a new session; changing tours or leaving the game closes an existing session. These stored sessions are what payroll (and our wider stats system) accounts for.
+This server keeps watching the game regardless of whether anyone has the website open and the rest of the application uses the cached results. Each successful poll compares the latest player observations with the duties already being tracked. Recognised drivers starting a tour get a new session; changing tours or leaving the game closes an existing session. These stored sessions are what payroll (and our wider stats system) accounts for.
 
 ### The `Payroll.Worker` GenServer
 
-Next, we have a worker for our payroll system. This GenServer mostly just listens for messages and coördinates payroll work. It listens for player updates, as sent by our `Players` server above, runs its own reconciliation timer, and performs final accounting when a duty ends. This is its handler for the aforementioned `:players_updated` broadcast:
+Next, we have a worker for our payroll system. This GenServer mostly just listens for messages and coördinates payroll work. It listens for player updates, as sent by our `Players` server above, runs its own reconciliation timer, and performs calculations when a duty ends. This is its handler for the aforementioned `:players_updated` broadcast:
 
 ```elixir
 def handle_info({:players_updated, server_id, _, _, fetched_at}, state) do
@@ -62,7 +62,7 @@ def handle_info({:players_updated, server_id, _, _, fetched_at}, state) do
 end
 ```
 
-We read the server's *open sessions* from Ash, and account for their time up to the latest successful observation. Note that the actor used here is `Tracking.recorder()` -- active sessions belong to the `Tracking` system, so we use this to describe our authority in reading this data.
+We read the server's *open sessions* from Ash, and account for their time up to the latest successful observation (`last_ok_at/fetched_at`). Note that the actor used here is `Tracking.recorder()` -- active sessions belong to the `Tracking` system, so we use this to describe our authority.
 
 Once our payroll transaction succeeds, we broadcast a notification identifying the affected month to the user's `PubSub` topic:
 
@@ -90,7 +90,7 @@ def handle_info({:payroll_updated, month}, socket) do
 end
 ```
 
-`reload` is our own helper which chooses how to update the page with new data, whether it be for the payslip list or a specific payslip. After fetching the updated payslip, we replace its main figures in the socket assigns and reset the streamed map breakdown. LiveView tracks these changes and sends the resulting update to the browser.
+`reload` is our own helper which chooses how to update the page with new data, whether it be for the payslip list or a specific payslip. After fetching the updated payslip, we replace it in the assigns and reset the per-map breakdown. LiveView tracks these changes and sends the update to the browser.
 
 ```elixir
 socket
@@ -104,7 +104,7 @@ And my favourite part is that all of our actions are under Ash policies. We defi
 def actor, do: ${payroll?: true}
 ```
 
-The policy allows it to read and update payslips, while drivers can only read their own, subject to the owner check:
+The policy allows it to read and update payslips, while we also check whether a user "owns" a payslip:
 
 ```elixir
 policies do
@@ -119,6 +119,6 @@ policies do
 end
 ```
 
-Ash applies these access rules when its actions run. The owner check becomes a filter restricting which payslips the query can return. That keeps the access rules always attached to the resource, wherever we call it.
+Ash applies these access rules when its actions run. Notice `Departcloud.Checks.PayslipOwner` -- this actually enforces the policy like a filter, preventing drivers from accessing payslips they don't own. Ash makes sure you think about this and keeps policies attached to resources, not hidden somewhere in middleware.
 
-The whole flow is ordinary Elixir message passing: the player process announces an observation, the payroll worker accounts for it through Ash, and the LiveView receives a notification and updates the state. The browser gets an updated payslips without its own implementation of the payroll rules. All of this is done with one cached poll per interval to the game server's player list API, regardless of how many users are visiting.
+The whole flow works together coherently. Something you notice while writing code like this is that each part of the flow can be used independently, but it doesn't feel "bolted on" to have a LiveView at the end serving everything to visitors. The player process announces an observation, the payroll worker accounts for it through Ash, and the LiveView receives a notification and updates the state. All of this is done with one cached poll per interval to the game server's player list API, regardless of how many users are visiting, and without having to implement payroll logic on the client.
