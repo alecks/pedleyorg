@@ -1,42 +1,76 @@
 [
-	{
-		"name": "depart.cloud",
-		"year": "2026",
-		"description": "Social hub for multiplayer OMSI 2. Elixir backend orchestrates servers, provides in-depth user administration, and analyses data from a hand-rolled game server to provide stats to players.",
-		"technologies": ["Elixir", "Phoenix", "Stripe", "Docker Compose"],
-		"href": "https://depart.cloud"
-	},
-	{
-		"name": "Relayed",
-		"year": "2026",
-		"description": "LSP-based live coding collaboration: any editor, from Helix to VS Code. CRDTs (conflict-free replicated data types) and file-tree syncing are used to achieve consistency, with new clients receiving snapshots from a nominated user.",
-		"technologies": ["Elixir", "TypeScript", "LSP"]
-	},
-	{
-		"name": "Digifilm",
-		"year": "2025",
-		"description": "Simple photography portfolio built with Cloudflare technologies. Uses R2 for image buckets, KV for album data. Dynamic with no server fees :)",
-		"technologies": ["TypeScript"],
-		"href": "https://github.com/alecks/digifilm"
-	},
-	{
-		"name": "passc",
-		"year": "2024",
-		"description": "CLI secrets manager with configurable libsodium encryption. Secure and reliable but perhaps not a Bitwarden replacement.",
-		"technologies": ["C", "libsodium", "SQLite3"],
-		"href": "https://github.com/alecks/passc"
-	},
-	{
-		"name": "Shutter",
-		"year": "2020",
-		"description": "An image upload service with a user dashboard, custom domain support, and Discord/ShareX integration.",
-		"technologies": ["Go", "PostgreSQL", "Redis"]
-	},
-	{
-		"name": "Slicer",
-		"year": "2020",
-		"description": "An initial attempt at a scalable chat platform. Learned to love and hate Kubernetes.",
-		"technologies": ["Go", "Kubernetes", "PostgreSQL", "Redis"],
-		"href": "https://github.com/open-slicer/cell"
-	}
+  {
+    "name": "depart.cloud",
+    "year": "2026",
+    "description": "Social hub for multiplayer OMSI 2. Elixir backend orchestrates servers, provides in-depth user administration, and analyses data from a hand-rolled game server to provide stats to players.",
+    "href": "https://depart.cloud",
+    "technologies": [
+      "Elixir",
+      "Phoenix",
+      "Stripe",
+      "Docker Compose"
+    ]
+  },
+  {
+    "name": "Relayed",
+    "year": "2026",
+    "description": "LSP-based live coding collaboration: any editor, from Helix to VS Code. CRDTs (conflict-free replicated data types), file-tree syncing and compressed snapshots are used to achieve consistency.",
+    "technologies": [
+      "Elixir",
+      "TypeScript",
+      "LSP"
+    ]
+  },
+  {
+    "name": "PaperTrail",
+    "year": "2025",
+    "description": "A study planner built with Go and htmx on top of Ollama. It works backwards from exam past-papers and uploaded lecture slides to create prioritised tasks and daily study plans.",
+    "technologies": [
+      "Go",
+      "htmx",
+      "Ollama"
+    ]
+  },
+  {
+    "name": "Digifilm",
+    "year": "2025",
+    "description": "Simple photography portfolio built with Cloudflare technologies. Uses R2 for image buckets, KV for album data. Dynamic with no server fees :)",
+    "href": "https://github.com/alecks/digifilm",
+    "technologies": [
+      "TypeScript"
+    ]
+  },
+  {
+    "name": "passc",
+    "year": "2024",
+    "description": "CLI secrets manager with configurable libsodium encryption. Secure and reliable but perhaps not a Bitwarden replacement.",
+    "href": "https://github.com/alecks/passc",
+    "technologies": [
+      "C",
+      "libsodium",
+      "SQLite3"
+    ]
+  },
+  {
+    "name": "Shutter",
+    "year": "2020",
+    "description": "An image upload service with a user dashboard, custom domain support, and Discord/ShareX integration.",
+    "technologies": [
+      "Go",
+      "PostgreSQL",
+      "Redis"
+    ]
+  },
+  {
+    "name": "Slicer",
+    "year": "2020",
+    "description": "An initial attempt at a scalable chat platform. Learned to love and hate Kubernetes.",
+    "href": "https://github.com/open-slicer/cell",
+    "technologies": [
+      "Go",
+      "Kubernetes",
+      "PostgreSQL",
+      "Redis"
+    ]
+  }
 ]
