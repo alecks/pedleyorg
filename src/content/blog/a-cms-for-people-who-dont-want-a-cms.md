@@ -4,7 +4,7 @@ description: I had never considered using a CMS, until using GitHub Mobile to
   add blog posts made me look crazy. Here's how I use Pages CMS to make this
   website both lightweight and editable.
 pubDate: 2026-10-19
-updatedDate: 2026-10-20
+updatedDate: 2026-10-21
 tags:
   - web
   - static-site-generation
@@ -139,7 +139,7 @@ Okay, so content management systems do a lot more than let you edit blog posts. 
 
 ## Conclusion
 
-This is the farthest I would go in adding any sort of content management to any static site. This website will work forever, as long as browsers still support HTML and CSS. If Pages CMS goes down, I can go back to the old-fashioned way of editing the files myself, or self-host it. There's no thinking about updating Wordpress because of a CVE, no dealing with outdated plugins, and importantly, you choose *exactly* what is served to your visitors.
+This is the farthest I would go in adding any sort of content management to any static site. This website will work forever, as long as browsers still support HTML and CSS. If Pages CMS goes down, I can go back to the old-fashioned way of editing the files myself, or self-host it. There's no thinking about updating Wordpress because of a CVE, no dealing with outdated plugins, and importantly, you choose *exactly* what is served to your visitors. UPDATE: Only took 2 days for that CVE... ["Critical security issue affecting PHP"](https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php).
 
 A sub-100-line config file is all you need to make it easy to manage uploads and content on your static site. It might not be necessary, but there's almost no reason not to. It'll make your life a lot easier if you ever feel like writing a blog post while on the move, which, if you're like me, is one of the few places where you'll have enough time to write one. It's free and open-source, and if you don't like it, just remove its push access to your repo -- done.
 
