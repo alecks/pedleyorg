@@ -16,7 +16,6 @@ content:
       - name: heading
         label: Homepage heading
         type: string
-        required: true
       - name: introduction
         label: Introduction
         type: text

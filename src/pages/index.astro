@@ -14,7 +14,7 @@ const tags = collectTags(posts);
 
 <Page>
 	<section class="intro" aria-labelledby="intro-title">
-		<h1 id="intro-title">{site.heading}</h1>
+		{site.heading && <h1 id="intro-title">{site.heading}</h1>}
 		<p>{site.introduction}</p>
 	</section>
 	<TagNavigation tags={tags} />

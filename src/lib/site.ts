@@ -15,7 +15,7 @@ const linkSchema = z.object({
 });
 const siteSchema = z.object({
 	name: text,
-	heading: text,
+	heading: optionalText,
 	introduction: text,
 	title: optionalText,
 	description: optionalText,
